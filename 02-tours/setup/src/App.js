@@ -9,17 +9,18 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [tours, setTours] = useState([]);
 
+  // remove tour click handler
   const removeTour = (id) => {
     const newTours = tours.filter((tour) => tour.id !== id);
     setTours(newTours);
   };
   // fetch data from api
   const fetchTours = async () => {
+    // loading state setter called, set to true
     setLoading(true);
     try {
       const response = await fetch(url);
       const tours = await response.json();
-      console.log(tours);
       setLoading(false);
       setTours(tours);
     } catch (error) {
@@ -31,6 +32,7 @@ function App() {
   useEffect(() => {
     fetchTours();
   }, []);
+
   // show loading screen
   if (loading) {
     return (
