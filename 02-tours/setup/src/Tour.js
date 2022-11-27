@@ -1,7 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const Tour = () => {
-  return <h2>tour component</h2>;
+const Tour = ({ tours }) => {
+  return (
+    <section>
+      <div className='title'>
+        <h2>our tours</h2>
+        <div className='underline'></div>
+      </div>
+      <div>
+        {tours.map((tour) => {
+          return <Tour key={tour.id} {...tour} />;
+        })}
+      </div>
+    </section>
+  );
 };
 
 export default Tour;
