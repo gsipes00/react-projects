@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Tour = ({ id, image, info, price, name, removeTour }) => {
   const [readMore, setReadMore] = useState(false);
+
   return (
     <article className='single-tour'>
       <img src={image} alt={name} />
@@ -12,6 +13,7 @@ const Tour = ({ id, image, info, price, name, removeTour }) => {
         </div>
         <p>
           {readMore ? info : `${info.substring(0, 200)}...`}
+          {/* setReadMore(!readMore) sets readMore = to the opposite value */}
           <button onClick={() => setReadMore(!readMore)}>
             {readMore ? "show less" : "show more"}
           </button>
@@ -19,6 +21,12 @@ const Tour = ({ id, image, info, price, name, removeTour }) => {
         <button className='delete-btn' onClick={() => removeTour(id)}>
           not interested
         </button>
+        {/* added the below code for fun */}
+        <span>
+          <a href='http://localhost:3000/'>
+            <i className='fas fa-home'></i>
+          </a>
+        </span>
       </footer>
     </article>
   );
