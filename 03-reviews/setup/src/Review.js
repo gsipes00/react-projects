@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-import people from './data';
-import { FaArrowAltCircleLeft, FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa';
 
-const Review = () => {
-  const [index, setIndex] = useState(0)
-  const {name, jon, image, text} = people[index]
-  return (
-    article
-  )
-=======
+// import React, { useState } from 'react';
+// import people from './data';
+// import { FaArrowAltCircleLeft, FaChevronLeft, FaChevronRight, FaQuoteRight } from 'react-icons/fa';
+
+
 import React, { useState } from "react";
 import people from "./data";
 import { FaChevronLeft, FaChevronRight, FaQuoteRight } from "react-icons/fa";
@@ -78,7 +72,6 @@ const Review = () => {
       </button>
     </article>
   );
->>>>>>> 397a4dc13f46c924da99cc42eee45f9f0261e5e8
 };
 
 export default Review;
