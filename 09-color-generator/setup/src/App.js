@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SingleColor from "./SingleColor";
+import rgbToHex from "./utils";
 
 import Values from "values.js";
 
@@ -7,6 +8,29 @@ function App() {
   const [color, setColor] = useState("");
   const [error, setError] = useState(false);
   const [list, setList] = useState(new Values("#f15025").all(10));
+
+  // generate random color
+  // use Math.random to generate three values for color, RGB
+  let randomRed;
+  let randomGreen;
+  let randomBlue;
+
+  const randomRGB = () => {
+    randomRed = Math.floor(Math.random() * 256);
+    randomGreen = Math.floor(Math.random() * 256);
+    randomBlue = Math.floor(Math.random() * 256);
+    const randomHex = rgbToHex(randomRed, randomGreen, randomBlue);
+    setList(() => {
+      new Values(randomHex).all(10);
+    });
+  };
+
+  // useEffect(()=>{
+  //   const randomHex = randomRGB()
+  //   setList(new Values(randomHex).all(10));
+  // },)
+  // use the function in utils to convert the random RGB to hex
+  // call the Values function with the random hex in a click function
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,6 +59,7 @@ function App() {
           <button className='btn' type='submit'>
             submit
           </button>
+          <button onClick={randomRGB}>generate</button>
         </form>
       </section>
       <section className='colors'>
