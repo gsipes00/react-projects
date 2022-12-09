@@ -170,6 +170,19 @@ input {
   color: var(--clr-white);
   cursor: pointer;
 }
+.random-btn {
+  margin-left: 2rem;
+  background: var(--clr-primary-5);
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-color: transparent;
+  /* border-top-right-radius: var(--radius);
+  border-bottom-right-radius: var(--radius); */
+  border-radius: var(--radius);
+  text-transform: capitalize;
+  color: var(--clr-white);
+  cursor: pointer;
+}
 @media screen and (max-width: 576px) {
   .container h3 {
     font-size: 1rem;

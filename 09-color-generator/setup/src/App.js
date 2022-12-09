@@ -15,23 +15,17 @@ function App() {
   let randomGreen;
   let randomBlue;
 
-  const randomRGB = () => {
+  // generate random color function
+  const randomColor = () => {
     randomRed = Math.floor(Math.random() * 256);
     randomGreen = Math.floor(Math.random() * 256);
     randomBlue = Math.floor(Math.random() * 256);
+    // const randomRGB = `${randomRed}, ${randomGreen}, ${randomBlue}`;
     const randomHex = rgbToHex(randomRed, randomGreen, randomBlue);
-    setList(() => {
-      new Values(randomHex).all(10);
-    });
+    setList(new Values(randomHex).all(10));
   };
 
-  // useEffect(()=>{
-  //   const randomHex = randomRGB()
-  //   setList(new Values(randomHex).all(10));
-  // },)
-  // use the function in utils to convert the random RGB to hex
-  // call the Values function with the random hex in a click function
-
+  // on form submit, generate color list and display
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -59,8 +53,10 @@ function App() {
           <button className='btn' type='submit'>
             submit
           </button>
-          <button onClick={randomRGB}>generate</button>
         </form>
+        <button className='random-btn' onClick={randomColor}>
+          get random
+        </button>
       </section>
       <section className='colors'>
         {list.map((color, index) => {
