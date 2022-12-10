@@ -8,6 +8,7 @@ function App() {
   const [color, setColor] = useState("");
   const [error, setError] = useState(false);
   const [list, setList] = useState(new Values("#f15025").all(10));
+  const [save, setSave] = useState("");
 
   // generate random color
   // use Math.random to generate three values for color, RGB
@@ -23,6 +24,15 @@ function App() {
     // const randomRGB = `${randomRed}, ${randomGreen}, ${randomBlue}`;
     const randomHex = rgbToHex(randomRed, randomGreen, randomBlue);
     setList(new Values(randomHex).all(10));
+  };
+
+  const saveColor = () => {
+    setSave(list);
+    console.log(save);
+  };
+
+  const setSavedColor = () => {
+    setList(save);
   };
 
   // on form submit, generate color list and display
@@ -56,6 +66,13 @@ function App() {
         </form>
         <button className='random-btn' onClick={randomColor}>
           get random
+        </button>
+        <button className='random-btn' onClick={saveColor}>
+          save color
+        </button>
+        {}
+        <button id='color-one' className='random-btn' onClick={setSavedColor}>
+          color one
         </button>
       </section>
       <section className='colors'>
