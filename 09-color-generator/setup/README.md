@@ -1,3 +1,3 @@
 #### Values JS
 
-(https://github.com/noeldelgado/values.js)
+[values](https://github.com/noeldelgado/values.js)
