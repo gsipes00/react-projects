@@ -17,14 +17,29 @@ function App() {
   // event handler func for submit button
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name);
+
+    // form on submit logic
     if (!name) {
-      // display alert
       showAlert(true, "danger", "please enter a value");
-    } else if (name && isEditing) {
-      // deal with edit
-    } else {
-      //  show alert
+    }
+    // if editing
+    else if (name && isEditing) {
+      setList(
+        list.map((item) => {
+          if (item.id === editId) {
+            // ...item returns all properties of the item, and then updates the title prop for the item
+            return { ...item, title: name };
+          }
+          return item;
+        })
+      );
+      setName("");
+      setEditId(null);
+      setIsEditing(false);
+      showAlert(true, "success", "value changed");
+    }
+    // if adding new item
+    else {
       showAlert(true, "success", "item added to the list");
       const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
@@ -50,6 +65,14 @@ function App() {
     setList(list.filter((item) => item.id !== id));
   };
 
+  // edit item
+  const editItem = (id) => {
+    const specificItem = list.find((item) => item.id === id);
+    setIsEditing(true);
+    setEditId(id);
+    setName(specificItem.title);
+  };
+
   // return jsx
   return (
     <section className='section-center'>
@@ -71,7 +94,7 @@ function App() {
       </form>
       {list.length > 0 && (
         <div className='grocery-container'>
-          <List items={list} removeItem={removeItem} />
+          <List items={list} removeItem={removeItem} editItem={editItem} />
           <button className='clear-btn' onClick={clearList}>
             clear items
           </button>
