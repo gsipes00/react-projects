@@ -13,12 +13,26 @@ function App() {
     msg: "",
     type: "",
   });
+  const [randomColor, setRandomColor] = useState("");
 
-  // event handler func for submit button
+  const randomColorList = [
+    "red",
+    "blue",
+    "purple",
+    "pink",
+    "white",
+    "black",
+    "brown",
+  ];
+
+  const priceGenerator = () => {
+    return (Math.random() * 10).toString().slice(0, 4);
+  };
+
+  // **********event handler func for submit button**********
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // form on submit logic
     if (!name) {
       showAlert(true, "danger", "please enter a value");
     }
@@ -28,7 +42,7 @@ function App() {
         list.map((item) => {
           if (item.id === editId) {
             // ...item returns all properties of the item, and then updates the title prop for the item
-            return { ...item, title: name };
+            return { ...item, title: name, price: priceGenerator() };
           }
           return item;
         })
@@ -41,7 +55,11 @@ function App() {
     // if adding new item
     else {
       showAlert(true, "success", "item added to the list");
-      const newItem = { id: new Date().getTime().toString(), title: name };
+      const newItem = {
+        id: new Date().getTime().toString(),
+        title: name,
+        price: priceGenerator(),
+      };
       setList([...list, newItem]);
       setName("");
     }
