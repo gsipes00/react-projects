@@ -2,10 +2,20 @@ import React, { useState, useEffect } from "react";
 import List from "./List";
 import Alert from "./Alert";
 
+// check local storage for list and return it for initial state, or return empty array
+const getLocalStorage = () => {
+  let list = localStorage.getItem("list");
+  if (list) {
+    return JSON.parse(list);
+  } else {
+    return [];
+  }
+};
+
 function App() {
   // state values
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage());
   const [isEditing, setIsEditing] = useState(false);
   const [editId, setEditId] = useState(null);
   const [alert, setAlert] = useState({
@@ -13,18 +23,8 @@ function App() {
     msg: "",
     type: "",
   });
-  const [randomColor, setRandomColor] = useState("");
 
-  const randomColorList = [
-    "red",
-    "blue",
-    "purple",
-    "pink",
-    "white",
-    "black",
-    "brown",
-  ];
-
+  // played around with creating prices
   const priceGenerator = () => {
     return (Math.random() * 10).toString().slice(0, 4);
   };
@@ -90,6 +90,10 @@ function App() {
     setEditId(id);
     setName(specificItem.title);
   };
+  // when the item list updates, update local storage
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   // return jsx
   return (
